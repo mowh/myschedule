@@ -1,0 +1,82 @@
+subprojects { 
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
+
+  version = '1.0'  
+
+  // JVM 版本号要求
+  sourceCompatibility = 1.7
+  targetCompatibility = 1.7  
+  // java编译的时候缺省状态下会因为中文字符而失败
+  [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+  ext {  
+    quartzVersion = '2.2.1'
+    slf4jVersion = '1.7.5'
+    vaadinVersion = '7.0.1'
+    groovyVersion = '2.1.6'
+    hamcrestVersion = '1.3'
+    junitVersion = '4.11'
+    mockitoVersion = '1.8.5'
+
+    projectVersion = '1.0'
+  }
+
+  repositories {
+    maven { url "http://maven.vaadin.com/vaadin-addons" }
+    mavenLocal()
+    mavenCentral()
+  }
+
+  jar {
+  	manifest {
+  	  attributes("Implementation-Title": "Gradle")
+    }
+  }
+  
+  configurations {
+    // 所有需要忽略的包定义在此
+    // all*.exclude group: 'commons-httpclient'
+    // all*.exclude group: 'commons-logging'
+    // all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
+  }
+
+  dependencies {
+    // 通用依赖
+    compile(  
+      "org.slf4j:slf4j-api:$slf4jVersion",
+      "org.slf4j:slf4j-log4j12:$slf4jVersion",
+
+      "org.quartz-scheduler:quartz:$quartzVersion",
+      
+      "commons-io:commons-io:2.0.1",
+      "commons-lang:commons-lang:2.5",
+      
+      "com.vaadin:vaadin-client-compiled:$vaadinVersion",
+      "com.vaadin:vaadin-server:$vaadinVersion",
+      "com.vaadin:vaadin-client:$vaadinVersion",
+      "com.vaadin:vaadin-themes:$vaadinVersion",
+
+      "org.vaadin.addon:confirmdialog:2.0.4",
+      
+      "org.codehaus.groovy:groovy:$groovyVersion",
+      "org.codehaus.groovy:groovy-jsr223:$groovyVersion",
+
+
+      "org.hamcrest:hamcrest-library:$hamcrestVersion",
+      
+      "junit:junit:$junitVersion",
+    )
+    
+    // compile jarTree
+    
+    // 测试依赖
+    testCompile(
+      "junit:junit:$junitVersion",
+      "org.springframework:spring-test:4.1.0.RELEASE",
+      "org.mockito:mockito-core:1.+"
+    ) 
+  }
+  
+}

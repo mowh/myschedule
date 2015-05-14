@@ -1,0 +1,6 @@
+archivesBaseName = 'myschedule-web-config'
+
+dependencies{  
+  // 依赖 core 模块
+  compile project(":myschedule-quartz-extra")  
+}  

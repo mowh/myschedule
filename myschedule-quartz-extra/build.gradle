@@ -1,0 +1,8 @@
+archivesBaseName = 'myschedule-quartz-extra'
+
+//其他直接继承父模块的配置
+
+jar {
+	baseName = 'myschedule-quartz-extra'
+    version =  '1.0'
+}

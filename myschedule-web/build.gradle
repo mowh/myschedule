@@ -1,0 +1,19 @@
+archivesBaseName = 'myschedule-web'
+
+//其他直接继承父模块的配置
+apply plugin:"war"
+
+war {
+    webXml = file('src/main/webapp/WEB-INF/web.xml')
+}
+
+dependencies{  
+  // 依赖 core 模块
+  compile project(":myschedule-web-config")
+  compile project(":myschedule-quartz-extra")
+  compile project(":..:toroback:server")
+
+  compile(  
+    "javax.servlet:servlet-api:2.5"
+  )
+}  

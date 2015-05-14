@@ -1,0 +1,3 @@
+rootProject.name = 'toroback-myschedule'
+
+include 'myschedule-quartz-extra', 'myschedule-web-config', 'myschedule-web', '..:toroback:server'
